@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 
+const productRoutes = require('./routes/products')
 const notFoundMiddleware = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
 const connectDB = require('./db/connect')
@@ -17,7 +18,7 @@ app.get('/', (req, res) => {
 })
 
 // products route
-
+app.use('/api/v1/products', productRoutes)
 
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleware)
